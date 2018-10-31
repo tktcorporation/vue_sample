@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in items">
+        <label>
+          <input type="checkbox" v-model="item.isChecked"> {{ item.title }}
+        </label>
+      </li>
+    </ul>
+    <p>
+      <input type="text"
+        placeholder="TODOを入力しましょう！"
+        v-model="newItemTitle"
+        v-on:keyup.enter="addTodo(newItemTitle)">
+    </p>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="todo.js"></script>
+</html>
