@@ -11,13 +11,33 @@ const vm = new Vue({
     ],
     newItemTitle: ''
   },
+  mounted: function(){
+    this.loadTodo();
+  },
   methods: {
+    loadTodo: function(){
+      this.items = JSON.parse( localStorage.getItem('items') );
+      if( !this.items ){
+        this.items = [];
+      }
+    },
     addTodo: function(newTitle){
       this.items.push({
         title: newTitle,
         isChecked: false
       });
-      this.newItemTitle = ''; //追加
+      this.newItemTitle = '';
+      this.saveTodo();
+    },
+    deleteTodo: function(){
+      this.items = this.items.filter(function (item) {
+        return item.isChecked === false; //
+      });
+      this.saveTodo();
+    },
+    saveTodo: function(){
+      localStorage.setItem('items', JSON.stringify(this.items));
     },
   }
+
 })
